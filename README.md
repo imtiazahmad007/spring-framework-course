@@ -1,6 +1,6 @@
 # Read Below
 
-Hello Students,
+<strong>Hello Students,</strong>
 
 All the code typed in the course lectures is in the <strong>src</strong> folder shown above. 
 

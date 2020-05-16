@@ -1,5 +1,4 @@
-# spring-framework-course
-Source Code for Spring Framework Course
+# Source code for spring-framework-course
 
 Hello Students,
 

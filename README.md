@@ -1,4 +1,4 @@
-# Source code for spring-framework-course
+# README
 
 Hello Students,
 

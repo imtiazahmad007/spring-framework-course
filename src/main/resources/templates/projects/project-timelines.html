@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+	
+	<head th:replace="layouts :: header"></head>
+	
+		<nav th:replace="layouts :: navbar"></nav>
+		
+	<body>
+	<br>
+
+	<h2 class="text-center"> Project Timelines </h2>
+	
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+
+
+		var chartData = "[[${projectTimeList}]]"
+		var chartDataDecoded = decodeHtml(chartData);
+		var chartJsonArray = JSON.parse(chartDataDecoded)
+		var resultArray = [];
+	
+
+		for(var i in chartJsonArray){
+			resultArray.push([i, chartJsonArray[i]]);
+		}
+
+		google.charts.load('current', {'packages':['timeline']});
+	    google.charts.setOnLoadCallback(drawChart);
+	      
+      function drawChart() {
+        var container = document.getElementById('chart_div');
+        var chart = new google.visualization.Timeline(container);
+        var dataTable = new google.visualization.DataTable();
+
+        dataTable.addColumn({ type: 'string', id: 'Project' });
+        dataTable.addColumn({ type: 'date', id: 'Start' });
+        dataTable.addColumn({ type: 'date', id: 'End' });
+
+	      for (var i = 0; i < resultArray.length; i++) {
+	    	  dataTable.addRows([
+	    		  			[resultArray[i][1]["projectName"], 
+	    		  			 new Date(resultArray[i][1]["startDate"]),
+	    		  			new Date(resultArray[i][1]["endDate"])]
+	    		  ]);
+	      }
+
+	 
+        chart.draw(dataTable);
+
+        
+      }
+     
+		
+
+		function decodeHtml(html) {
+		    var txt = document.createElement("textarea");
+		    txt.innerHTML = html;
+		    return txt.value;
+		}
+
+
+	</script>
+
+    
+  	<div id="chart_div"></div>
+
+				
+
+</body>
+
+</html>

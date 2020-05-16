@@ -1,4 +1,4 @@
-# Read Below!
+# Read Below
 
 Hello Students,
 
